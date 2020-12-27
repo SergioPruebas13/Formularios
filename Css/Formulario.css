@@ -1,0 +1,223 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background: gray;
+}
+
+.container{
+    background: #00A1F3;
+    width: 65%;
+    min-width: 800px;
+    margin: auto;
+    margin-top: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: space-around;
+}
+
+.tipoUser{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.recientes{
+    background: white;
+    border-radius: 2px;
+    margin-top: 20px;
+    width: 300px;
+    height: 100%;
+}
+
+.recientes p{
+    text-align: center;
+}
+
+.ordenes{
+    /* background-color: rebeccapurple; */
+    border: 1.5px solid #2F353A;
+    height: 6%;
+    margin: 7px;
+    border-radius: 3px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.numero_orden{
+    /* background: red; */
+    width: 20%;
+    height: 100%;
+    /* text-align: center; */
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+
+.titular_orden{
+    /* background: chartreuse; */
+    width: 60%;
+    height: 100%;
+
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.titular_orden span{
+    margin-bottom: 5%;
+}
+
+.fecha{
+    /* background: red; */
+    margin: 3px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.empleado-mecanico{
+    /* background: chartreuse; */
+    margin: 3px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.st_mes_filtro{
+    text-align-last: center;
+}
+
+.st_empleado_filtro{
+    text-align-last: center;
+}
+
+.no-encontrados-recientes{
+    /* background: red; */
+    padding: 30px;
+}
+
+.no-encontrados-recientes p{
+    font-size: 18px;
+}
+
+.mes_emple{
+    color: red;
+}
+
+.placa-moto{
+    /* background-color: red; */
+    margin: 4px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.placa-moto input{
+    /* background: red; */
+    border: none;
+    padding: 3.5px;
+    width: 80px;
+}
+
+.valor_Total{
+    /* background: red; */
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.valor_Total input{
+    /* background: royalblue; */
+    border: none;
+    padding: 5px;
+    border-radius: 2px;
+    width: 100px;
+    text-align: center;
+}
+
+.view_orden{
+    /* background: cornflowerblue; */
+    height: 100%;
+    width: 20%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.view_orden button{
+    background: #2F353A;
+    border: none;
+    color: #fff;
+    padding: 6px;
+    border-radius: 2px;
+    
+}
+
+.view_orden button:hover{
+    background: #fff;
+    border: 1px solid #2F353A;
+    color: #2F353A;
+}
+
+.mainform{
+    width: 55%;
+    min-width: 440px;
+    /* background: cornsilk; */
+}
+
+.nameObjebt{
+    /* background: chartreuse; */
+    padding: 5px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nameObjebt input,select{
+    border: none;
+    padding: 2.5px;
+}
+
+.nameObjebt input{
+    width: 219px;
+}
+
+.nameObjebt select{
+    width: 224px;
+}
+
+
+.nameObjebt_TextArea{
+    /* background: chartreuse; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nameObjebt_TextArea span{
+    margin-left: 5px;
+}
+
+.registrar{
+    /* background: red; */
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.registrar button{
+    padding: 5px;
+    border-radius: 2px;
+    border: none;
+}
+

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Css/Formulario.css">
+    <title>Formulario</title>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="tipoUser">
+            <p>Tipo Usuario</p>
+            <span>Administrador</span>
+            <div class="filtos_Ordenes">
+                <div class="fecha">
+                    <span>Mes:</span>
+                    <select name="" id="Mes_filtro" class="st_mes_filtro">
+                        <option value="-">Todos</option>
+                    </select>
+                </div>
+                <div class="empleado-mecanico">
+                    <span>Empleado:</span>
+                    <select name="" id="Empleado_filtro" class="st_empleado_filtro">
+                        <option value="-">Todos</option>
+                    </select>
+                </div>
+                <div class="placa-moto">
+                    <span>Placa:</span>
+                    <input type="text" name="" id="placa_moto_id">
+                    <button id="buscar-placa-moto">Buscar</button>
+                </div>
+                <div class="valor_Total">
+                    <span>Valor Total:</span>
+                    <input type="text" id="Valor_Total">
+                </div>
+            </div>
+            <div class="recientes" id="recientes_id">
+                <!-- Ordenes Recientes -->
+                <!-- <div class="ordenes">
+                    <div class="numero_orden">
+                        <span>N° 12</span>
+                    </div>
+                    <div class="titular_orden">
+                        <span>Julian Adolfo Diaz Marquez</span>
+                        <span>9/12/2020</span>
+                    </div>
+                    <div class="view_orden">
+                        <button>View</button>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        
+        <div class="mainform">
+            <!-- Datos de Formulario -->
+            <div class="nameObjebt">
+                <span>ORDEN N°</span>
+                <input type="text" id="orden_num">
+            </div>
+            <div class="nameObjebt">
+                <span> Fecha</span>
+                <input type="date" id="fecha_orden">
+            </div>
+
+            <div style="text-align: center;">Datos Cliente</div>
+
+            <div class="nameObjebt">
+                <span>Nombre</span>
+                <input type="text" id="nombre_cliente">
+            </div>
+            <div class="nameObjebt">
+                <span>Cedula</span>
+                <input type="text" id="cedula_cliente">
+            </div>
+            <div class="nameObjebt">
+                <span>Email</span>
+                <input type="text" id="email_cliente">
+            </div>
+            <div class="nameObjebt">
+                <span>Dirección</span>
+                <input type="text" id="direcciion_cliente">
+            </div>
+            <div class="nameObjebt">
+                <span>Municipio</span>
+                <input type="text" id="municipio_cliente">
+            </div>
+            <div class="nameObjebt">
+                <span>Celular</span>
+                <input type="text" id="celular_cliente">
+            </div>
+
+            <div style="text-align: center;">Datos Moto</div>
+            
+            <div class="nameObjebt">
+                <span>Marca</span>
+                <select name="" id="marca_moto">
+                    <option value="-">- Seleccione -</option>
+                    <option value="Susuki">Susuki</option>
+                    <option value="Pulsar">Pulsar</option>
+                    <option value="AKT">AKT</option>
+                    <option value="Yamaha"> Yamaha </option>
+                </select>
+            </div>
+            <div class="nameObjebt">
+                <span>Linea</span>
+                <input type="text" id="linea_moto">
+            </div>
+            <div class="nameObjebt">
+                <span>Modelo</span>
+                <input type="text" id="modelo_moto">
+            </div>
+            <div class="nameObjebt">
+                <span>Revision</span>
+                <input type="text" id="revision_moto">
+            </div>
+            <div class="nameObjebt">
+                <span>N° Motor</span>
+                <input type="text" id="num_motor_moto">
+            </div>
+            <div class="nameObjebt">
+                <span>N° Chasis</span>
+                <input type="text" id="num_chasis_moto">
+            </div>
+            <div class="nameObjebt">
+                <span>Kilometraje</span>
+                <input type="text" id="kilometraje_moto">
+            </div>
+            <div class="nameObjebt">
+                <span>Gasolina</span>
+                <input type="text" id="gasolina_moto">
+            </div>
+            <div class="nameObjebt">
+                <span>Placa</span>
+                <input type="text" id="placa_moto">
+            </div>
+            <div class="nameObjebt">
+                <span>Color</span>
+                <input type="text" id="color_moto">
+            </div>
+            <div class="nameObjebt">
+                <span>Deja Casco</span>
+                <input type="text" id="deja_casco_moto">
+            </div>
+            <div class="nameObjebt">
+                <span>Llavero</span>
+                <input type="text" id="llavero_moto">
+            </div>
+            <div class="nameObjebt">
+                <span>Deja llaves</span>
+                <input type="checkbox" id="deja_llaves">
+            </div>
+            <div class="nameObjebt">
+                <span>Soat al Dia</span>
+                <input type="checkbox" id="soat_al_dia">
+            </div>
+            <div class="nameObjebt">
+                <span>Revision al dia</span>
+                <input type="checkbox" id="revision_al_dia">
+            </div>
+            <div class="nameObjebt">
+                <span>Deja Documentos</span>
+                <input type="checkbox" id="deja_documentos">
+            </div>
+            <div class="nameObjebt_TextArea">
+                <span>Cliente Manisfiesta</span>
+                <textarea name="" id="cliente_manifiesta" cols="30" rows="5" ></textarea>
+            </div>
+            <div class="nameObjebt_TextArea">
+                <span> Descripcion del Trabajo</span>
+                <textarea name="" id="descripcion_del_trabajo" cols="30" rows="5"></textarea>
+            </div>
+
+            <div class="nameObjebt">
+                <span> Valor Mano de Obra</span>
+                <input type="text" id="valor_mano_obra">
+            </div>
+            <div class="nameObjebt">
+                <span> Valor Trabajos Externos</span>
+                <input type="text" id="valor_trabajos_extra">
+            </div>
+
+            <div class="nameObjebt_TextArea">
+                <span>Repuestos Utilizados</span>
+                <textarea name="" id="repuestos_utilizados" cols="30" rows="5"></textarea>
+            </div> 
+            <div class="nameObjebt">
+                <span>Valor Repuestos Utilizados </span>
+                <input type="text" id="valor_repuestos">
+            </div>
+
+            <div class="nameObjebt_TextArea">
+                <span>Observaciones</span>
+                <textarea name="" id="observaciones" cols="30" rows="5"></textarea>
+            </div> 
+
+            <div class="nameObjebt">
+                <span>Factura (s)</span>
+                <input type="text" id="factura_num">
+            </div>
+
+            <div class="nameObjebt">
+                <span>Nombre mecanico</span>
+                <select name="" id="nombre_mecanico">
+                    <option value="-">- Seleccione -</option>
+                    <option value="Luis Gernando gallegos Rios">Luis Gernando gallegos Rios</option>
+                    <option value="Kener Lindao Moralez">Kener Lindao Moralez</option>
+                    <option value="Julian Adolfo Diaz Marquez">Julian Adolfo Diaz Marquez </option>
+                    <option value="jose Olverio Castañeda">jose Olverio Castañeda </option>
+                  </select> 
+            </div>
+
+            <div class="nameObjebt">
+                <span>Valor Total</span>
+                <input type="text" id="valor_total">
+            </div>
+
+            <div class="registrar">
+                <button id="registrar_ficha">Registrar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../JS/jquery-3.5.1.min.js"></script>
+    <script src="../JS/index.js"></script>
+
+</body>
+</html>

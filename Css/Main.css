@@ -1,0 +1,68 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.Main_Container{
+    background: gray;
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Admin_Container{
+    background: #00A1F3;
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+}
+
+.admin_img{
+    background: #00A1F3;
+    height: 40%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;    
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin_img img{
+    width: 100px;
+    height: 100px;
+}
+
+.admin_user_password{
+    background: #00A1F3;
+    height: 40%;
+    text-align: center;
+}
+
+label{
+    /* background: crimson; */
+    display: block;
+}
+
+input{
+    margin-bottom: 10px;
+}
+
+.admin_ingresar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button{
+    padding: 7px;
+    margin-top: 12px;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
