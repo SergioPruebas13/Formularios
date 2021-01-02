@@ -6,6 +6,16 @@ body{
     background: gray;
 }
 
+
+#limpiar_registros{
+    background: #2F353A;
+    color: #fff;
+    border: none;
+    padding: 5px;
+    margin: 8px;
+}
+
+
 .container{
     background: #00A1F3;
     width: 65%;
@@ -126,6 +136,43 @@ body{
     width: 80px;
 }
 
+#buscar-placa-moto{
+    background: #2F353A;
+    color: #fff;
+    border: none;
+    padding: 3.5px;
+}
+
+.valor_Total_mano_obra{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.valor_Total_mano_obra input{
+    border: none;
+    padding: 5px;
+    border-radius: 2px;
+    width: 100px;
+    text-align: center;
+}
+
+.valor_Total_repuestos{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.valor_Total_repuestos input{
+    border: none;
+    padding: 5px;
+    border-radius: 2px;
+    width: 100px;
+    text-align: center;
+}
+
 .valor_Total{
     /* background: red; */
     margin-top: 10px;
@@ -142,6 +189,7 @@ body{
     width: 100px;
     text-align: center;
 }
+
 
 .view_orden{
     /* background: cornflowerblue; */
@@ -183,6 +231,34 @@ body{
     align-items: center;
 }
 
+.into-div{
+    /* background: red; */
+    width: 225px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.into_div_int{
+    /* background: chartreuse; */
+    width: 45px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.into_div_moto{
+    /* background: chartreuse; */
+    width: 75px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 .nameObjebt input,select{
     border: none;
     padding: 2.5px;
@@ -203,6 +279,7 @@ body{
     justify-content: space-between;
     align-items: center;
 }
+
 
 .nameObjebt_TextArea span{
     margin-left: 5px;

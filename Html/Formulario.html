@@ -12,6 +12,7 @@
         <div class="tipoUser">
             <p>Tipo Usuario</p>
             <span>Administrador</span>
+            <button id="limpiar_registros">Limpiar Todos Registros </button>
             <div class="filtos_Ordenes">
                 <div class="fecha">
                     <span>Mes:</span>
@@ -29,6 +30,14 @@
                     <span>Placa:</span>
                     <input type="text" name="" id="placa_moto_id">
                     <button id="buscar-placa-moto">Buscar</button>
+                </div>
+                <div class="valor_Total_mano_obra">
+                    <span>V.T. Mano Obra:</span>
+                    <input type="text" id="Valor_Total_mano_obra">
+                </div>
+                <div class="valor_Total_repuestos">
+                    <span>V.T. Repuestos:</span>
+                    <input type="text" id="Valor_Total_respuestos">
                 </div>
                 <div class="valor_Total">
                     <span>Valor Total:</span>
@@ -127,10 +136,6 @@
                 <input type="text" id="kilometraje_moto">
             </div>
             <div class="nameObjebt">
-                <span>Gasolina</span>
-                <input type="text" id="gasolina_moto">
-            </div>
-            <div class="nameObjebt">
                 <span>Placa</span>
                 <input type="text" id="placa_moto">
             </div>
@@ -138,29 +143,107 @@
                 <span>Color</span>
                 <input type="text" id="color_moto">
             </div>
+            <!-- Seccion Gasolina -->
+            <div class="nameObjebt">
+                <span>Gasolina</span>
+                <div class="into-div">
+                    <div class="into_div_moto">
+                        <span>Vacio</span>
+                        <input type="radio" name="gasolina_moto" value="vacio" id="id_gasolina_moto_vacio">
+                    </div>
+                    <div class="into_div_moto">
+                        <span>Medio</span>
+                        <input type="radio" name="gasolina_moto" value="medio" id="id_gasolina_moto_medio">
+                    </div>
+                    <div class="into_div_moto">
+                        <span>Lleno</span>
+                        <input type="radio" name="gasolina_moto" value="lleno" id="id_gasolina_moto_lleno">
+                    </div>
+                </div>
+            </div>
+            <!-- Seccion Deja Casco -->
             <div class="nameObjebt">
                 <span>Deja Casco</span>
-                <input type="text" id="deja_casco_moto">
+                <div class="into-div">
+                    <div class="into_div_int">
+                        <span>Si</span>
+                        <input type="radio" name="deja_casco_moto" value="si" id="id_deja_casco_moto_si">
+                    </div>
+                    <div class="into_div_int">
+                        <span>No</span>
+                        <input type="radio" name="deja_casco_moto" value="no" id="id_deja_casco_moto_no">
+                    </div>
+                </div>
             </div>
+            <!-- Secccion de llavero -->
             <div class="nameObjebt">
                 <span>Llavero</span>
-                <input type="text" id="llavero_moto">
+                <div class="into-div">
+                    <div class="into_div_int">
+                        <span>Si</span>
+                        <input type="radio" name="deja_llavero" value="si" id="id_llavero_si">
+                    </div>
+                    <div class="into_div_int">
+                        <span>No</span>
+                        <input type="radio" name="deja_llavero" value="no" id="id_llavero_no">
+                    </div>
+                </div>
             </div>
+            <!-- Seccion de Deja LLaves  -->
             <div class="nameObjebt">
                 <span>Deja llaves</span>
-                <input type="checkbox" id="deja_llaves">
+                <div class="into-div">
+                    <div class="into_div_int">
+                        <span>Si</span>
+                        <input type="radio" name="deja_llaves" value="si" id="id_llaves_si">
+                    </div>
+                    <div class="into_div_int">
+                        <span>No</span>
+                        <input type="radio" name="deja_llaves" value="no" id="id_llaves_no">
+                    </div>
+                </div>
             </div>
+            <!-- Seccion de Soat  -->
             <div class="nameObjebt">
                 <span>Soat al Dia</span>
-                <input type="checkbox" id="soat_al_dia">
+                <div class="into-div">
+                    <div class="into_div_int">
+                        <span>Si</span>
+                        <input type="radio" name="soat_al_dia" value="si" id="id_soat_al_dia_si">
+                    </div>
+                    <div class="into_div_int">
+                        <span>No</span>
+                        <input type="radio" name="soat_al_dia" value="no" id="id_soat_al_dia_no">
+                    </div>
+                </div>
             </div>
+            <!-- Secccion Revicion al dia  -->
             <div class="nameObjebt">
                 <span>Revision al dia</span>
-                <input type="checkbox" id="revision_al_dia">
+                <div class="into-div">
+                    <div class="into_div_int">
+                        <span>Si</span>
+                        <input type="radio" name="revision_al_dia" value="si" id="id_revision_al_dia_si">
+                    </div>
+                    <div class="into_div_int">
+                        <span>No</span>
+                        <input type="radio" name="revision_al_dia" value="no" id="id_revision_al_dia_no">
+                    </div>
+                </div>
             </div>
+            <!-- Seccion Deja Documentos -->
             <div class="nameObjebt">
                 <span>Deja Documentos</span>
-                <input type="checkbox" id="deja_documentos">
+                <div class="into-div">
+                    <div class="into_div_int">
+                        <span>Si</span>
+                        <input type="radio" name="deja_documentos" value="si" id="id_deja_documentos_si">
+                    </div>
+                    <div class="into_div_int">
+                        <span>No</span>
+                        <input type="radio" name="deja_documentos" value="no" id="id_deja_documentos_no">
+                    </div>
+                </div>
             </div>
             <div class="nameObjebt_TextArea">
                 <span>Cliente Manisfiesta</span>

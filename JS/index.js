@@ -30,18 +30,27 @@ function main (){
         var selec = document.querySelector('#Mes_filtro');
         // alert(selec.value)
         Recargar_Recientes();
+          document.getElementById('placa_moto_id').value = '';
     });
 
     $('body').on('change', '#Empleado_filtro', function(){
         var selec = document.querySelector('#Empleado_filtro');
         // alert(selec.value)
         Recargar_Recientes();
+          document.getElementById('placa_moto_id').value = ''; 
     });
 
     $('body').on('click', '#buscar-placa-moto', function(){
         Cargar_Placa();
         Limpiar();
     });
+
+    $('body').on('click', '#limpiar_registros', function(){
+        localStorage.clear();
+        Cargar_all();
+    });
+
+   
 
 }
 
@@ -73,16 +82,30 @@ function Limpiar (){
     document.getElementById('num_motor_moto').value= '';
     document.getElementById('num_chasis_moto').value= '';
     document.getElementById('kilometraje_moto').value= '';
-    document.getElementById('gasolina_moto').value= '';
     document.getElementById('placa_moto').value= '';
     document.getElementById('color_moto').value= '';
-    document.getElementById('deja_casco_moto').value= '';
-    document.getElementById('llavero_moto').value= '';
 
-    document.getElementById('deja_llaves').checked = false;
-    document.getElementById('soat_al_dia').checked = false;
-    document.getElementById('revision_al_dia').checked = false;
-    document.getElementById('deja_documentos').checked = false;
+    document.getElementById('id_gasolina_moto_vacio').checked = false;
+    document.getElementById('id_gasolina_moto_medio').checked = false;
+    document.getElementById('id_gasolina_moto_lleno').checked = false;
+    
+    document.getElementById('id_deja_casco_moto_si').checked = false;
+    document.getElementById('id_deja_casco_moto_no').checked = false;
+    
+    document.getElementById('id_llavero_si').checked = false;
+    document.getElementById('id_llavero_no').checked = false;
+
+    document.getElementById('id_llaves_si').checked = false;
+    document.getElementById('id_llaves_no').checked = false;
+
+    document.getElementById('id_soat_al_dia_si').checked = false;
+    document.getElementById('id_soat_al_dia_no').checked = false;
+
+    document.getElementById('id_revision_al_dia_si').checked = false;
+    document.getElementById('id_revision_al_dia_no').checked = false;
+
+    document.getElementById('id_deja_documentos_si').checked = false;
+    document.getElementById('id_deja_documentos_no').checked = false;
 
 
     document.getElementById('cliente_manifiesta').value= '';
@@ -103,8 +126,13 @@ function Cargar_Recientes (){
     var obj_ficha_ls = JSON.parse(localStorage.getItem('obj_ficha_ls'));
     var recientes_id = document.getElementById('recientes_id');
     var varlor_total_input = document.getElementById('Valor_Total');
+    var varlor_total_Mano_Obra_input = document.getElementById('Valor_Total_mano_obra');
+    var varlor_total_Repuestos_input = document.getElementById('Valor_Total_respuestos');
+
     var html = "";
     var valor_total_init = 0;
+    var varlor_total_Mano_Obra_init = 0;
+    var varlor_total_Repuestos_init = 0;
 
     if (obj_ficha_ls != null) {
         for (let i = 0; i < obj_ficha_ls.length; i++) {
@@ -122,10 +150,14 @@ function Cargar_Recientes (){
                 </div>
             </div>
             `;
+            varlor_total_Mano_Obra_init += (obj_ficha_ls[i].obj_valor_trabajos_externos*1);
+            varlor_total_Repuestos_init += (obj_ficha_ls[i].obj_valor_repuestos_utilizados*1);
             valor_total_init += (obj_ficha_ls[i].obj_valor_total*1);
         }
     }
   
+    varlor_total_Mano_Obra_input.value = `$ ${new Intl.NumberFormat().format(varlor_total_Mano_Obra_init)}`;
+    varlor_total_Repuestos_input.value = `$ ${new Intl.NumberFormat().format(varlor_total_Repuestos_init)}`;
     varlor_total_input.value = `$ ${new Intl.NumberFormat().format(valor_total_init)}`;
     recientes_id.innerHTML = '';
     recientes_id.innerHTML = html;
@@ -138,10 +170,16 @@ function Recargar_Recientes (){
     let mes_fil = document.querySelector('#Mes_filtro');
     var obj_ficha_ls = JSON.parse(localStorage.getItem('obj_ficha_ls'));
     var recientes_id = document.getElementById('recientes_id');
+    var varlor_total_Mano_Obra_input = document.getElementById('Valor_Total_mano_obra');
+    var varlor_total_Repuestos_input = document.getElementById('Valor_Total_respuestos');
     var varlor_total_input = document.getElementById('Valor_Total');
     var html = "";
     var filtro_mes = 0,filtro_empleado = 0;
     var encontrados = 0;
+
+
+    var varlor_total_Mano_Obra_re = 0;
+    var varlor_total_Repuestos_re = 0;
     var valor_total_re = 0;
 
     if (empleado_fil.value != 'Todos') {
@@ -171,6 +209,8 @@ function Recargar_Recientes (){
                 </div>
                 `;
                 encontrados = 1;
+                varlor_total_Mano_Obra_re += (obj_ficha_ls[i].obj_valor_trabajos_externos*1);
+                varlor_total_Repuestos_re += (obj_ficha_ls[i].obj_valor_repuestos_utilizados*1);
                 valor_total_re += (obj_ficha_ls[i].obj_valor_total*1);
             }else if (filtro_mes == 0 && filtro_empleado == 1) {
                 if (obj_ficha_ls[i].obj_nombre_mecanico == empleado_fil.value) {
@@ -189,6 +229,8 @@ function Recargar_Recientes (){
                     </div>
                     `;
                     encontrados = 1;
+                    varlor_total_Mano_Obra_re += (obj_ficha_ls[i].obj_valor_trabajos_externos*1);
+                    varlor_total_Repuestos_re += (obj_ficha_ls[i].obj_valor_repuestos_utilizados*1);
                     valor_total_re += (obj_ficha_ls[i].obj_valor_total*1);
                 }
             }else if (filtro_mes == 1 && filtro_empleado == 0) {
@@ -208,6 +250,8 @@ function Recargar_Recientes (){
                     </div>
                     `;
                     encontrados = 1;
+                    varlor_total_Mano_Obra_re += (obj_ficha_ls[i].obj_valor_trabajos_externos*1);
+                    varlor_total_Repuestos_re += (obj_ficha_ls[i].obj_valor_repuestos_utilizados*1);
                     valor_total_re += (obj_ficha_ls[i].obj_valor_total*1);
                 }
             }else if (filtro_mes == 1 && filtro_empleado == 1) {
@@ -227,6 +271,8 @@ function Recargar_Recientes (){
                     </div>
                     `; 
                     encontrados = 1;
+                    varlor_total_Mano_Obra_re += (obj_ficha_ls[i].obj_valor_trabajos_externos*1);
+                    varlor_total_Repuestos_re += (obj_ficha_ls[i].obj_valor_repuestos_utilizados*1);
                     valor_total_re += (obj_ficha_ls[i].obj_valor_total*1);
                 }
             }
@@ -245,6 +291,8 @@ function Recargar_Recientes (){
         `;
     }
 
+    varlor_total_Mano_Obra_input.value = `$ ${new Intl.NumberFormat().format(varlor_total_Mano_Obra_re)}`;
+    varlor_total_Repuestos_input.value = `$ ${new Intl.NumberFormat().format(varlor_total_Repuestos_re)}`;
     varlor_total_input.value = `$ ${new Intl.NumberFormat().format(valor_total_re)}`;
     recientes_id.innerHTML = '';
     recientes_id.innerHTML = html;
@@ -255,9 +303,13 @@ function Recargar_Recientes (){
 function Cargar_Placa (){
     var obj_ficha_ls = JSON.parse(localStorage.getItem('obj_ficha_ls'));
     var recientes_id = document.getElementById('recientes_id');
+    var varlor_total_Mano_Obra_input = document.getElementById('Valor_Total_mano_obra');
+    var varlor_total_Repuestos_input = document.getElementById('Valor_Total_respuestos');
     var varlor_total_input = document.getElementById('Valor_Total');
     var id_input_placa_moto = document.getElementById('placa_moto_id');
     var html = "";
+    var varlor_total_Mano_Obra_init = 0;
+    var varlor_total_Repuestos_init = 0;
     var valor_total_init = 0;
     var encontrados = 0;
     
@@ -279,6 +331,8 @@ function Cargar_Placa (){
                     </div>
                     `;
                 encontrados = 1;
+                varlor_total_Mano_Obra_init += (obj_ficha_ls[i].obj_valor_trabajos_externos*1);
+                varlor_total_Repuestos_init += (obj_ficha_ls[i].obj_valor_repuestos_utilizados*1);
                 valor_total_init += (obj_ficha_ls[i].obj_valor_total*1);
             }
         }
@@ -293,7 +347,8 @@ function Cargar_Placa (){
         </div>
         `;
     }
-
+    varlor_total_Mano_Obra_input.value = `$ ${new Intl.NumberFormat().format(varlor_total_Mano_Obra_init)}`;
+    varlor_total_Repuestos_input.value = `$ ${new Intl.NumberFormat().format(varlor_total_Repuestos_init)}`;
     varlor_total_input.value = `$ ${new Intl.NumberFormat().format(valor_total_init)}`;
     recientes_id.innerHTML = '';
     recientes_id.innerHTML = html;
@@ -355,7 +410,7 @@ function Cargar_Filtro_Mes (){
     var obj_ficha_ls = Obtener_Array_mes();
     var selector = document.querySelector('#Mes_filtro');
     var bandera = 0;
-    console.log(obj_ficha_ls);
+    // console.log(obj_ficha_ls);
     if (obj_ficha_ls != null) {
         for (let i = 0; i < (obj_ficha_ls.length+1); i++) {  
 
@@ -435,18 +490,53 @@ function Mostrar_View_Orden(id){
                     document.getElementById('num_motor_moto').value= obj_ficha_ls[i].obj_num_motor;
                     document.getElementById('num_chasis_moto').value= obj_ficha_ls[i].obj_num_chasis;
                     document.getElementById('kilometraje_moto').value= obj_ficha_ls[i].obj_kilometraje;
-                    document.getElementById('gasolina_moto').value= obj_ficha_ls[i].obj_gasolina;
                     document.getElementById('placa_moto').value= obj_ficha_ls[i].obj_placa;
                     document.getElementById('color_moto').value= obj_ficha_ls[i].obj_color;
-                    document.getElementById('deja_casco_moto').value= obj_ficha_ls[i].obj_dejaCasco;
-                    document.getElementById('llavero_moto').value= obj_ficha_ls[i].obj_llavero;
-                
-                    document.getElementById('deja_llaves').checked = obj_ficha_ls[i].obj_deja_llaves;
-                    document.getElementById('soat_al_dia').checked = obj_ficha_ls[i].obj_soat_al_dia;
-                    document.getElementById('revision_al_dia').checked = obj_ficha_ls[i].obj_revision_al_dia;
-                    document.getElementById('deja_documentos').checked = obj_ficha_ls[i].obj_deja_documentos;
-                
-                
+
+                    if (obj_ficha_ls[i].obj_gasolina == 'vacio') {
+                        document.getElementById('id_gasolina_moto_vacio').checked = true;
+                    } else if (obj_ficha_ls[i].obj_gasolina == 'medio') {
+                        document.getElementById('id_gasolina_moto_medio').checked = true; 
+                    }else if (obj_ficha_ls[i].obj_gasolina == 'lleno') {
+                        document.getElementById('id_gasolina_moto_lleno').checked = true;
+                    }
+                                        
+                    if (obj_ficha_ls[i].obj_dejaCasco == true) {
+                        document.getElementById('id_deja_casco_moto_si').checked = true;
+                    } else {
+                        document.getElementById('id_deja_casco_moto_no').checked = true;
+                    }
+
+                    if (obj_ficha_ls[i].obj_llavero == true) {
+                        document.getElementById('id_llavero_si').checked = true;
+                    } else {
+                        document.getElementById('id_llavero_no').checked = true;
+                    }
+
+                    if (obj_ficha_ls[i].obj_deja_llaves == true) {
+                        document.getElementById('id_llaves_si').checked = true;
+                    } else {
+                        document.getElementById('id_llaves_no').checked = true;
+                    }
+
+                    if (obj_ficha_ls[i].obj_soat_al_dia == true) {
+                        document.getElementById('id_soat_al_dia_si').checked = true;
+                    } else {
+                        document.getElementById('id_soat_al_dia_no').checked = true;
+                    }
+
+                    if (obj_ficha_ls[i].obj_revision_al_dia == true) {
+                        document.getElementById('id_revision_al_dia_si').checked = true;
+                    } else {
+                        document.getElementById('id_revision_al_dia_no').checked = true;
+                    }
+
+                    if (obj_ficha_ls[i].obj_deja_documentos == true) {
+                        document.getElementById('id_deja_documentos_si').checked = true;
+                    } else {
+                        document.getElementById('id_deja_documentos_no').checked = true;
+                    }
+
                     document.getElementById('cliente_manifiesta').value= obj_ficha_ls[i].obj_cliente_manifiesta;
                     document.getElementById('descripcion_del_trabajo').value= obj_ficha_ls[i].obj_descripcion_trabajo;
                     document.getElementById('valor_mano_obra').value= obj_ficha_ls[i].obj_valor_mano_obra;
@@ -476,6 +566,8 @@ function guardar_orden_LS (){
     municipio = document.getElementById('municipio_cliente').value;
     celular = document.getElementById('celular_cliente').value;
 
+    // Datos Moto
+
     marca = document.getElementById('marca_moto').value;
     linea = document.getElementById('linea_moto').value;
     modelo = document.getElementById('modelo_moto').value;
@@ -483,43 +575,50 @@ function guardar_orden_LS (){
     num_motor = document.getElementById('num_motor_moto').value;
     num_chasis = document.getElementById('num_chasis_moto').value;
     kilometraje = document.getElementById('kilometraje_moto').value;
-    gasolina = document.getElementById('gasolina_moto').value;
     placa = document.getElementById('placa_moto').value;
     color = document.getElementById('color_moto').value;
-    dejaCasco = document.getElementById('deja_casco_moto').value;
-    llavero = document.getElementById('llavero_moto').value;
+    
+    gasolina = $('input[name=gasolina_moto]:checked').val();
 
-
-    if(document.getElementById('deja_llaves').checked==true){
+    if ($('input[name=deja_casco_moto]:checked').val() == 'si') {
+        dejaCasco =  true;
+    } else {
+        dejaCasco =  false;
+    }
+    
+    if ($('input[name=deja_llavero]:checked').val() == 'si') {
+        llavero = true;
+    } else {
+        llavero = false;
+    }
+  
+    if ($('input[name=deja_llaves]:checked').val() == 'si') {
         deja_llaves = true;
     }else{
         deja_llaves = false;
     }
-
-    if(document.getElementById('soat_al_dia').checked==true){
+    
+    if ( $('input[name=soat_al_dia]:checked').val() == 'si') {
         soat_al_dia = true;
-    }else{
+    } else {
         soat_al_dia = false;
     }
 
-    if(document.getElementById('revision_al_dia').checked==true){
+    if ($('input[name=revision_al_dia]:checked').val() == 'si') {
         revision_al_dia = true;
-    }else{
+    } else {
         revision_al_dia = false;
     }
-
-    if(document.getElementById('deja_documentos').checked==true){
+  
+    if ($('input[name=deja_documentos]:checked').val() == 'si') {
         deja_documentos = true;
     }else{
         deja_documentos = false;
     }
+   
 
-    // deja_llaves = document.getElementById('deja_llaves').value;
-    // soat_al_dia = document.getElementById('soat_al_dia').value;
-    // revision_al_dia = document.getElementById('revision_al_dia').value;
-    // deja_documentos = document.getElementById('deja_documentos').value;
-
-
+  
+ 
 
     cliente_manifiesta = document.getElementById('cliente_manifiesta').value;
     descripcion_trabajo = document.getElementById('descripcion_del_trabajo').value;
@@ -533,7 +632,7 @@ function guardar_orden_LS (){
     valor_total = document.getElementById('valor_total').value;
 
         
-    // console.log(Fecha_orden);
+    
 
 
     obj_Ficha = {
@@ -576,6 +675,7 @@ function guardar_orden_LS (){
         obj_valor_total: valor_total        
     }
 
+    console.log(obj_Ficha); 
    
 
     if (localStorage.getItem('obj_ficha_ls') === null) {
