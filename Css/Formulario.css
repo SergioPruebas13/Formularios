@@ -22,6 +22,7 @@ body{
     min-width: 800px;
     margin: auto;
     margin-top: 30px;
+    margin-bottom: 30px;
     padding-top: 15px;
     padding-bottom: 15px;
     border-radius: 10px;
@@ -280,10 +281,76 @@ body{
     align-items: center;
 }
 
-
 .nameObjebt_TextArea span{
     margin-left: 5px;
 }
+
+.nameObjebt_table{
+    display: flex;
+    justify-content: space-between;
+}
+
+.nameObjebt_table span{
+    margin-left: 5px;
+}
+
+.table-input-repuestos{
+    /* background: red; */
+    width: 230px;
+}
+
+.input-repuestos{
+    /* background: royalblue; */
+    width: 100%;
+    height: 25px;
+
+    display: flex;
+    
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.input-repuestos input{
+    /* background: chartreuse; */
+    padding: 2.1px;
+    border: none;
+    width: 155px;
+
+}
+
+.input-repuestos span{
+    margin-right: 5px;
+}
+
+.repuestos-button{
+    /* background: darkblue; */
+    margin: 3.5px;
+    display: flex;
+    justify-content: center;
+}
+
+.repuestos-button button{
+    background: #2F353A;
+    color: #fff;
+    border: none;
+    border-radius: 1.8px;
+    padding: 3.5px;
+}
+
+.table-repuestos{
+    background-color: white;
+    width: 100%; 
+    border: 1px solid #2F353A;
+}
+
+.table-repuestos th,td{
+    background: rgb(192, 192, 192);
+    width: 64%;
+    max-width: 100px;
+    text-align: center;
+    overflow: auto;
+}
+
 
 .registrar{
     /* background: red; */

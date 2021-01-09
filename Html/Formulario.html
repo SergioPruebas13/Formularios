@@ -263,9 +263,34 @@
                 <input type="text" id="valor_trabajos_extra">
             </div>
 
-            <div class="nameObjebt_TextArea">
+            <div class="nameObjebt_table">
                 <span>Repuestos Utilizados</span>
-                <textarea name="" id="repuestos_utilizados" cols="30" rows="5"></textarea>
+
+                <div class="table-input-repuestos">
+                    <div class="intput-buton-repuestos">
+                        <div class="input-repuestos">
+                            <span>Repuesto:</span> 
+                            <input type="text" id="repuestos_repuesto_id"><br>
+                        </div>
+                        <div class="input-repuestos">
+                            <span>Precio:</span>
+                            <input type="text" id="repuestos_precio_id"><br>
+                        </div>
+                        <div class="repuestos-button">
+                            <button id="agregar_repuestos">Agregar</button>
+                        </div>
+                    </div>
+
+                    <div id="table_inner">
+                        <table class="table-repuestos">
+                            <tr>
+                                <th >Repuestos</th>
+                                <th >Precio</th>
+                            </tr>                           
+                        </table>
+                    </div>
+                </div>
+          
             </div> 
             <div class="nameObjebt">
                 <span>Valor Repuestos Utilizados </span>

@@ -15,6 +15,8 @@ var cliente_manifiesta,descripcion_trabajo,valor_mano_obra,
 valor_trabajos_externos,repuestos_utilizados,valor_repuestos_utilizados,
 observaciones,factura,nombre_mecanico,valor_total;
 
+var repuestos_utilizados_array = [];
+
 
 function main (){
 
@@ -37,7 +39,7 @@ function main (){
         var selec = document.querySelector('#Empleado_filtro');
         // alert(selec.value)
         Recargar_Recientes();
-          document.getElementById('placa_moto_id').value = ''; 
+          document.getElementById('placa_moto_id').value = '';  
     });
 
     $('body').on('click', '#buscar-placa-moto', function(){
@@ -50,6 +52,9 @@ function main (){
         Cargar_all();
     });
 
+    $('body').on('click', '#agregar_repuestos', function(){
+        Agregar_Repuestos();
+    });
    
 
 }
@@ -112,7 +117,17 @@ function Limpiar (){
     document.getElementById('descripcion_del_trabajo').value= '';
     document.getElementById('valor_mano_obra').value= '';
     document.getElementById('valor_trabajos_extra').value= '';
-    document.getElementById('repuestos_utilizados').value= '';
+
+    document.getElementById('repuestos_repuesto_id').value = '';
+    document.getElementById('repuestos_precio_id').value = '';
+    document.getElementById('table_inner').innerHTML = `
+                        <table class="table-repuestos">
+                            <tr>
+                                <th >Repuestos</th>
+                                <th >Precio</th>
+                            </tr>                           
+                        </table>`;
+    
     document.getElementById('valor_repuestos').value= '';
     document.getElementById('observaciones').value= '';
     document.getElementById('factura_num').value= '';
@@ -466,6 +481,8 @@ function Cargar_Filtro_Empleado (){
 
 function Mostrar_View_Orden(id){
     var obj_ficha_ls = JSON.parse(localStorage.getItem('obj_ficha_ls'));
+    var html,templed='';
+   
 
     if (document.getElementById('orden_num').value == id) {
         Limpiar();
@@ -539,14 +556,38 @@ function Mostrar_View_Orden(id){
 
                     document.getElementById('cliente_manifiesta').value= obj_ficha_ls[i].obj_cliente_manifiesta;
                     document.getElementById('descripcion_del_trabajo').value= obj_ficha_ls[i].obj_descripcion_trabajo;
-                    document.getElementById('valor_mano_obra').value= obj_ficha_ls[i].obj_valor_mano_obra;
-                    document.getElementById('valor_trabajos_extra').value= obj_ficha_ls[i].obj_valor_trabajos_externos;
-                    document.getElementById('repuestos_utilizados').value= obj_ficha_ls[i].obj_repuestos_utilizados;
-                    document.getElementById('valor_repuestos').value= obj_ficha_ls[i].obj_valor_repuestos_utilizados;
+                    document.getElementById('valor_mano_obra').value= `$ ${new Intl.NumberFormat().format(obj_ficha_ls[i].obj_valor_mano_obra)}`;
+                    document.getElementById('valor_trabajos_extra').value= `$ ${new Intl.NumberFormat().format(obj_ficha_ls[i].obj_valor_trabajos_externos)}`;
+
+                    var arra = obj_ficha_ls[i].obj_repuestos_utilizados;
+                        for (var j = 0; j < arra.length; j++) {
+                            templed += `
+                                <tr>
+                                    <td>${arra[j].repuesto}</td>
+                                    <td>$ ${new Intl.NumberFormat().format(arra[j].precio)}</td>
+                                </tr>
+                            `;
+                          
+                        }
+            
+                        html = `
+                            <table class="table-repuestos">
+                                <tr>
+                                    <th >Repuestos</th>
+                                    <th >Precio</th>
+                                </tr>
+                                ${templed}                           
+                            </table>
+                        `;
+
+                        document.getElementById('table_inner').innerHTML = '';
+                        document.getElementById('table_inner').innerHTML = html;  
+                        
+                    document.getElementById('valor_repuestos').value= `$ ${new Intl.NumberFormat().format(obj_ficha_ls[i].obj_valor_repuestos_utilizados)}`;
                     document.getElementById('observaciones').value= obj_ficha_ls[i].obj_observaciones;
                     document.getElementById('factura_num').value= obj_ficha_ls[i].obj_factura;
                     document.getElementById('nombre_mecanico').value= obj_ficha_ls[i].obj_nombre_mecanico;
-                    document.getElementById('valor_total').value= obj_ficha_ls[i].obj_valor_total;
+                    document.getElementById('valor_total').value= `$ ${new Intl.NumberFormat().format(obj_ficha_ls[i].obj_valor_total)}`;
                }
             }
         }   
@@ -617,14 +658,11 @@ function guardar_orden_LS (){
     }
    
 
-  
- 
-
     cliente_manifiesta = document.getElementById('cliente_manifiesta').value;
     descripcion_trabajo = document.getElementById('descripcion_del_trabajo').value;
     valor_mano_obra = document.getElementById('valor_mano_obra').value;
     valor_trabajos_externos = document.getElementById('valor_trabajos_extra').value;
-    repuestos_utilizados = document.getElementById('repuestos_utilizados').value;
+    repuestos_utilizados = repuestos_utilizados_array;
     valor_repuestos_utilizados = document.getElementById('valor_repuestos').value;
     observaciones = document.getElementById('observaciones').value;
     factura = document.getElementById('factura_num').value;
@@ -746,4 +784,50 @@ function removeDuplicates(originalArray, prop) {
         newArray.push(lookupObject[i]);
     }
      return newArray;
+}
+
+// Agregar Repuestos 
+function Agregar_Repuestos (){
+    var repuesto_in = document.getElementById('repuestos_repuesto_id');
+    var precio_in = document.getElementById('repuestos_precio_id');
+    var table = document.getElementById('table_inner');
+    var html,templed='';
+    var value_repuestos = 0;
+    
+
+    var obj = {
+        repuesto: repuesto_in.value,
+        precio: precio_in.value*1
+    }
+
+    repuestos_utilizados_array.push(obj);
+
+    console.log(repuestos_utilizados_array);
+
+        for (var i = 0; i < repuestos_utilizados_array.length; i++) {
+            templed += `
+                <tr>
+                    <td>${repuestos_utilizados_array[i].repuesto}</td>
+                    <td>$ ${new Intl.NumberFormat().format(repuestos_utilizados_array[i].precio)}</td>
+                </tr>
+            `;
+            value_repuestos += repuestos_utilizados_array[i].precio;
+        }
+
+        html = `
+            <table class="table-repuestos">
+                <tr>
+                    <th >Repuestos</th>
+                    <th >Precio</th>
+                </tr>
+                ${templed}                           
+            </table>
+        `;
+
+            table.innerHTML = '';
+            table.innerHTML = html;
+
+            document.getElementById('repuestos_repuesto_id').value = '';
+            document.getElementById('repuestos_precio_id').value = '';
+            document.getElementById('valor_repuestos').value = `${value_repuestos}`;
 }
